@@ -1,5 +1,6 @@
 import { Typebooks } from "./entities/Typebooks.entities";
 
+
 const createType = async (typeX) => {
     const typeX = await Typebooks.create(typeX);
     return typeX;
@@ -14,7 +15,24 @@ const modifyType = async (id, typeX) => {
     return updType;
 }
 
+const deleteType = async (id) => {
+    const delType = await Typebooks.findOne(
+        {where: { TypeID: id }
+    });
+    await delType.deleteType();
+    return delType;
+};
+
+const filterType = async (id) => {
+    return await Typebooks.findOne(
+        {where: { TypeID: id }
+    });
+};
+
 export const typeRepository = {
     createType,
-    modifyType
+    modifyType,
+    deleteType,
+    filterType
+
 }

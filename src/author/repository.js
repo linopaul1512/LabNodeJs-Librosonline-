@@ -14,7 +14,23 @@ const modifyAuth = async (id, authorX) => {
     return updAuthor;
 }
 
+const deletAuthor = async (id) => {
+    const delAuthor = await Author.findOne(
+        {where: { AuthorID: id }
+    });
+    await delAuthor.deletAuthor();
+    return delAuthor;
+};
+
+const filterAuthor = async (id) => {
+    return await Author.findOne(
+        {where: { AuthorID: id }
+    });
+};
+
 export const authorRepository = {
     createAuth,
-    modifyAuth
+    modifyAuth,
+    deletAuthor,
+    filterAuthor
 }

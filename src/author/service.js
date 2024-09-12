@@ -14,7 +14,25 @@ const modifyAuth = async (id, authorObj) => {
   };
 };
 
+const deleteAuthor = async (id) => {
+  const delAuthor = await authorRepository.deletAuthor(id);
+  return { deletedAuthor: delAuthor
+  };
+};
+
+const filteraAuthor = async (id) => {
+  const author = await authorRepository.filterAuthor(id);
+  return {
+    AuthorID: author.AuthorID,
+    Name: author.Name,
+    Biography: author.Biography,
+    Country: author.Country
+  };
+};
+
 export const authorService = {
     addAuth,
-    modifyAuth
+    modifyAuth,
+    filteraAuthor,
+    deleteAuthor
 }

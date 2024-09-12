@@ -8,7 +8,8 @@ authorRouter.use(bodyParser.json())
 authorRouter.use(bodyParser.urlencoded({
     extended: true
 }))
-
+authorRouter.get('/author/:id', authorController.filterAuth); 
+authorRouter.delete('/author/:id', authorController.deleteAuth);
 authorRouter.post('/author/add', authorController.addAuth);
 authorRouter.put('/author/:id', authorController.modifyAuth);
 
