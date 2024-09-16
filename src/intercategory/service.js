@@ -1,7 +1,7 @@
-import { intercatRepository, typeRepository } from './repository.js'
+import { intercatRepository } from './repository.js'
 
 
-const addIntercat = async (interObj) => {
+const addIntersim = async (interObj) => {
   const newInter = await intercatRepository.creatIntercat(interObj);
   return {
     InterCategory: newInter

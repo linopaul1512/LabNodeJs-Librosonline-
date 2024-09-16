@@ -1,4 +1,4 @@
-import { InterCategory } from './entities/intercategory.entity.js'
+import { InterCategory } from './entities/Intercategory.entity.js'
 
 
 const creatIntercat = async (interX) => {
