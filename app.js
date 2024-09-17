@@ -20,9 +20,15 @@ import { Typebooks } from './src/typebooks/entities/Typebooks.entities.js';
 import { InterCategory } from './src/intercategory/entities/intercategory.entity.js';
 import { User } from './src/user/entities/User.entity.js'; 
 import { Role } from './src/role/entities/Role.entity.js';
+import { Category } from './src/category/entities/Category.entity.js';
+import { Publication } from './src/publication/entities/Publication.entities.js';
+import { SimilarProducts } from './src/similiarproducts/entities/Similarproducts.js';
+import { InterSimilar } from './src/intersimilar/entities/Intersimilar.entity.js';
+import { Author } from './src/author/entities/Author.entity.js';
+import { Consults } from './src/consults/entities/Consults.entities.js';
 
 
-//
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: true
@@ -47,19 +53,48 @@ const PORT = 3000;
 
 try{
 
-//    User.hasMany(Post, { foreignKey: 'userId' }); 
-//    Post.belongsTo(User, { foreignKey: 'userId' });
-  
+    //roleacion de rol con usuario
     User.hasOne(Role, { foreignKey: 'RoleID' });
     Role.belongsTo(User, { foreignKey: 'RoleID' });
     
+    //relaciones de categoría
     Category.hasOne(InterCategory, { foreignKey: 'CategoryID' }); 
     InterCategory.belongsTo(Category, { foreignKey: 'CategoryID' });
     
+    Publication.hasOne(InterCategory, { foreignKey: 'CategoryID' }); 
+    InterCategory.belongsTo(Publication, { foreignKey: 'CategoryID' });
+
+    //relaciones de tipo libro
     Typebooks.hasOne(InterType, { foreignKey: 'TypeID' }); 
     InterType.belongsTo(Typebooks, { foreignKey: 'TypeID' });
 
+    Publication.hasOne(InterType, { foreignKey: 'TypeID' }); 
+    InterType.belongsTo(Publication, { foreignKey: 'TypeID' });
 
+    //relaciones de productos similares
+    SimilarProducts.hasOne(InterSimilar, { foreignKey: 'SimilarID ' }); 
+    InterSimilar.belongsTo(SimilarProducts, { foreignKey: 'SimilarID ' });
+
+    Publication.hasOne(InterType, { foreignKey: 'SimilarID' }); 
+    InterType.belongsTo(Publication, { foreignKey: 'SimilarID' });
+
+    //relaciones de autor con publicacion
+    Author.hasMany(Publication, { foreignKey: 'AuthorID' }); 
+    Publication.belongsTo(Author, { foreignKey: 'AuthorID ' });
+
+    //relaciones de consultas y publicacion
+    Consults.hasOne(Publication, { foreignKey: 'AuthorID' }); 
+    Publication.belongsTo(Consults, { foreignKey: 'AuthorID' });
+
+    //relaciones de usuario y publicacion
+    User.hasMany(Publication, { foreignKey: 'UserID' }); 
+    Publication.belongsTo(User, { foreignKey: 'UserID' });
+
+    //relaciones de usuario y productos similares
+    User.hasMany(SimilarProducts, { foreignKey: 'SimilarID ' }); 
+    SimilarProducts.belongsTo(User, { foreignKey: 'SimilarID ' });
+    
+    
     //await sequelize.authenticate();
     await sequelize.sync({ force: false });
     console.log('Connection with DB stablished'); 
@@ -68,5 +103,6 @@ try{
   }
   
   
-app.listen(PORT | 3000, () => {
-    console.log(`Server listening on port http://localhost:${PORT}`);
+  app.listen(PORT | 3000, () => {
+    console.log(`Server listening on port http://localhost:${PORT}`)
+  });
