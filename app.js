@@ -11,10 +11,15 @@ import intertypeRouter from './src/routes/routerintertype.js';
 import userRouter from './src/routes/routeruser.js';
 import similarRouter from './src/routes/routersimilar.js';
 import consultRouter from './src/routes/routerconsult.js';
+import categoryRouter from './src/routes/categoryRouter.js';
+import loginRouter from './src/routes/loginRouter.js';
+import userRouter from './src/routes/userRouter.js';
 import publicatinRouter from './src/routes/routerpublication.js';
 import { InterType } from './src/intertypes/entities/InterType.entities.js';
 import { Typebooks } from './src/typebooks/entities/Typebooks.entities.js';
 import { InterCategory } from './src/intercategory/entities/intercategory.entity.js';
+import { User } from './src/user/entities/User.entity.js'; 
+import { Role } from './src/role/entities/Role.entity.js';
 
 
 //
@@ -33,6 +38,9 @@ app.use('/',userRouter);
 app.use('/',similarRouter);
 app.use('/',consultRouter);
 app.use('/',publicatinRouter);
+app.use('/', categoryRouter);
+app.use('/', loginRouter);
+app.use('/', userRouter);
 
 const PORT = 3000;
 
@@ -41,6 +49,9 @@ try{
 
 //    User.hasMany(Post, { foreignKey: 'userId' }); 
 //    Post.belongsTo(User, { foreignKey: 'userId' });
+  
+    User.hasOne(Role, { foreignKey: 'RoleID' });
+    Role.belongsTo(User, { foreignKey: 'RoleID' });
     
     Category.hasOne(InterCategory, { foreignKey: 'CategoryID' }); 
     InterCategory.belongsTo(Category, { foreignKey: 'CategoryID' });
@@ -56,7 +67,6 @@ try{
     console.log('DB not connected', error); 
   }
   
-
   
 app.listen(PORT | 3000, () => {
     console.log(`Server listening on port http://localhost:${PORT}`);
