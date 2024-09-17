@@ -1,14 +1,22 @@
 import { sequelize } from "../../db/db.config.js";
 import { Sequelize } from "sequelize";
-export const Role = sequelize.define('role',
+export const SimilarProducts = sequelize.define('similarproducts',
 {
-    RoleID: {
+    SimilarID: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
         primaryKey: true
     },
     Name: {
         type: Sequelize.STRING,
+        allowNull: false
+    },
+    Description: {
+        type: Sequelize.STRING,
+        allowNull: false
+    },
+    UserID: {
+        type: Sequelize.INTEGER,
         allowNull: false
     }
 });

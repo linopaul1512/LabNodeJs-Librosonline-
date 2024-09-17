@@ -1,13 +1,21 @@
 import { sequelize } from "../../db/db.config.js";
 import { Sequelize } from "sequelize";
-export const Role = sequelize.define('role',
+export const Author = sequelize.define('author',
 {
-    RoleID: {
+    AuthorID: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
         primaryKey: true
     },
     Name: {
+        type: Sequelize.STRING,
+        allowNull: false
+    },
+    Biography: {
+        type: Sequelize.STRING,
+        allowNull: false
+    },
+    Country: {
         type: Sequelize.STRING,
         allowNull: false
     }

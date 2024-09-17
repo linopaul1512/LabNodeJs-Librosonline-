@@ -1,14 +1,18 @@
 import { sequelize } from "../../db/db.config.js";
 import { Sequelize } from "sequelize";
-export const Role = sequelize.define('role',
+export const InterSimilar = sequelize.define('intersimilar',
 {
-    RoleID: {
+    InterSimilarID: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
         primaryKey: true
     },
-    Name: {
-        type: Sequelize.STRING,
+    PublicationID: {
+        type: Sequelize.INTEGER,
+        allowNull: false
+    },
+    SimilarID: {
+        type: Sequelize.INTEGER,
         allowNull: false
     }
 });
