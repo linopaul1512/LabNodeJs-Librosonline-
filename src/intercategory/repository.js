@@ -1,7 +1,7 @@
-import { InterCategory } from './entities/Intercategory.entity.js'
+import { InterCategory } from "./entities/intercategory.entity.js";
 
 
-const creatIntercat = async (interX) => {
+const createIntercat = async (interX) => {
     const newInter = await InterCategory.create(interX);
     return newInter;
 };
@@ -31,7 +31,7 @@ const filterIntercat = async (id) => {
 };
 
 export const intercatRepository = {
-    creatIntercat,
+    createIntercat,
     modifyIntercat,
     deleteIntercat,
     filterIntercat

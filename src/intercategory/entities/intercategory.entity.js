@@ -1,6 +1,6 @@
 import { sequelize } from "../../db/db.config.js";
 import { Sequelize } from "sequelize";
-export const InterCategory = sequelize.define('InterCategory',
+export const InterCategory = sequelize.define('intercategory',
 {
     InterCategoryID: {
         type: Sequelize.INTEGER,
@@ -8,11 +8,11 @@ export const InterCategory = sequelize.define('InterCategory',
         primaryKey: true
     },
     CategoryID: {
-        type: Sequelize.STRING,
+        type: Sequelize.INTEGER,
         allowNull: false
     },
     PublicationID: {
-        type: Sequelize.STRING,
+        type: Sequelize.INTEGER,
         allowNull: false
     }
 });

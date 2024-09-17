@@ -1,10 +1,10 @@
 import { intercatRepository } from './repository.js'
 
 
-const addIntersim = async (interObj) => {
+const addIntercat = async (interObj) => {
   const newInter = await intercatRepository.creatIntercat(interObj);
   return {
-    InterCategory: newInter
+    intercategory: newInter
   };
 };
 

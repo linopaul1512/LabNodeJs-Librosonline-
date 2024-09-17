@@ -8,9 +8,9 @@ const createIntersim= async (interX) => {
 
 const modifyIntersim = async (id, interX) => {
     const updInter = await InterSimilar.findOne(
-        {where: { InterSimilarID: id }
+        {where: { InterTypeID: id }
     });
-    updInter.PublicationID = interX.PublicationID;
+    updInter.PulicationID = interX.PublicationID;
     updInter.SimilarID = interX.SimilarID;
     await updInter.save();
     return updInter;

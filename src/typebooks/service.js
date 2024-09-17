@@ -1,8 +1,8 @@
-import { typeRepository } from './repository.js'
+import { typeRepository } from "./repository.js";
 
 
 const addType = async (typeObj) => {
-  const newType = await typeRepository.createRol(typeObj);
+  const newType = await typeRepository.createRol(roleObj);
   return {
     typebooks: newType
   };

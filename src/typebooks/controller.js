@@ -1,6 +1,4 @@
-import {typeService} from './service.js';
-
-
+import { typeService } from "./service.js";
 
 const filterType = async (req, res) => {
     res.status(200).json(await typeService.filterTypes(req.params.id));
@@ -17,6 +15,7 @@ const modifyType = async (req, res) => {
 const deleteType = async (req, res) => {
     res.status(200).json(await typeService.deleteType(req.params.id));
 };
+
 
 export const typeController = {
     addType,

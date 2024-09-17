@@ -1,12 +1,10 @@
-import { Typebooks } from "./entities/Typebooks.entity.js";
+import { Typebooks } from "./entities/Typebooks.entities.js";
 
 
 const createType = async (typeX) => {
-    const newType = await Typebooks.create(typeX);
-    return newType;
+    const typeX = await Typebooks.create(typeX);
+    return typeX;
 };
-
-
 
 const modifyType = async (id, typeX) => {
     const updType = await Typebooks.findOne(

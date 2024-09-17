@@ -1,6 +1,6 @@
 import { sequelize } from "../../db/db.config.js";
 import { Sequelize } from "sequelize";
-export const InterSimilar = sequelize.define('InterSimilar',
+export const InterSimilar = sequelize.define('intersimilar',
 {
     InterSimilarID: {
         type: Sequelize.INTEGER,

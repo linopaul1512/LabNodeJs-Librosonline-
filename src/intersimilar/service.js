@@ -4,7 +4,7 @@ import { intersimRepository } from './repository.js';
 const addIntersim= async (interObj) => {
   const newInter = await intersimRepository.createIntersim(interObj);
   return {
-    InterSimilar: newInter
+    intersimilar: newInter
   };
 };
 
