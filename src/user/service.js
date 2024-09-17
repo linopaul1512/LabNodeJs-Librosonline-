@@ -1,6 +1,6 @@
 import {userRepository} from "./repository.js";
 
-export const authenticateUser = async (email, password) => {
+const authenticateUser = async (email, password) => {
   const user = await userRepository.findUserByEmail(email);
 
   if (!user) {
