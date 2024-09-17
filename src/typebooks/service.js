@@ -1,4 +1,4 @@
-import { typeRepository } from "./repository";
+import { typeRepository } from "./repository.js";
 
 
 const addType = async (typeObj) => {

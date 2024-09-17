@@ -1,4 +1,4 @@
-import { typeService } from "./service";
+import { typeService } from "./service.js";
 
 const filterType = async (req, res) => {
     res.status(200).json(await typeService.filterTypes(req.params.id));

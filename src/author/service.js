@@ -1,4 +1,4 @@
-import { authorRepository } from "./repository";
+import { authorRepository } from "./repository.js";
 
 const addAuth = async (authorObj) => {
   const newAuthor = await authorRepository.createAuth(authorObj);

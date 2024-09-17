@@ -1,6 +1,6 @@
 import bodyParser from 'body-parser';
 import express from 'express';
-import { authorController } from '../author/controller';
+import { authorController } from '../author/controller.js';
 
 
 const authorRouter = express.Router()

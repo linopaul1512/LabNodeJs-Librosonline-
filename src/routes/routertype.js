@@ -1,6 +1,6 @@
-import bodyParser from 'body-parser';
 import express from 'express';
-import { typeController } from '../typebooks/controller';
+import bodyParser from 'body-parser';
+import { typeController } from '../typebooks/controller.js';
 
 
 const typeRouter = express.Router()

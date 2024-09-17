@@ -1,4 +1,4 @@
-import { Typebooks } from "./entities/Typebooks.entities";
+import { Typebooks } from "./entities/Typebooks.entities.js";
 
 
 const createType = async (typeX) => {

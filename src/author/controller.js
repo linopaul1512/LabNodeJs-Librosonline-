@@ -1,4 +1,4 @@
-import { authorService } from "./service"; 
+import { authorService } from "./service.js"; 
 
 
 const addAuth = async (req, res) => {

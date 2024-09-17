@@ -1,4 +1,4 @@
-import { Author } from "./entities/Author.entity";
+import { Author } from "./entities/Author.entity.js";
 
 const createAuth = async (authorX) => {
     const newAuthor = await Author.create(authorX);
