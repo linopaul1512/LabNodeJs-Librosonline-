@@ -1,43 +1,62 @@
-import { Role } from "../role/entities/Role.entity.js";
-import { userRepository } from "./repository.js";
+import {userRepository} from "./repository.js";
 
-const addUSer = async (userObj) => {
-  const newUser = await userRepository.createUser(userObj);
-  return {
-    user: newUser
-  };
+export const authenticateUser = async (email, password) => {
+  const user = await userRepository.findUserByEmail(email);
+
+  if (!user) {
+    throw new Error('Usuario no encontrado');
+  }
+
+  if (user.Password !== password) {
+    throw new Error('Contraseña incorrecta');
+  }
+
+  return { UserID: user.UserID, Name: user.Name };
 };
 
-const modifyUser = async (id, userObj) => {
-  const updUser = await userRepository.modifyUser(id, userObj);
-  return { 
-    updatedUser: updUser
+const showUsers = async () => {
+    const users = await userRepository.findAll();
+    return {
+      user: users
+    };
   };
-};
-
-const deleteUser = async (id) => {
-  const delUser = await userRepository.deleteUser(id);
-  return { deletedUser: delUser
+  
+  const addUser = async (userObj) => {
+    const newUser = await userRepository.createUser(userObj);
+    return {
+      user: newUser
+    };
   };
-};
-
-const filterUser = async (id) => {
-  const user = await userRepository.filterUser(id);
-  return {
-    UserID: userUserID,
-    Name: user.Name,
-    Lastname: user.Lastname,
-    Ic: user.Ic,
-    Datebirth: user.Datebirth,
-    Address: user.Address,
-    Email: user.Email,
-    Role: user.Role
+  
+  const modifyUser = async (id, userObj) => {
+    const updUser = await userRepository.modifyUser(id, userObj);
+    return { 
+      updatedUser: updUser
+    };
   };
-};
+  
+  const filterEmail = async (email) => {
+    const user = await userRepository.findUserByEmail(email);
+    return {
+      UserID: user.CategoryID,
+      Name: user.Name,
+      Lastname: user.Lastname,
+      Email: user.Email
+    };
+  };
+  
+  const deleteUser = async (id) => {
+    const delUser = await userRepository.deleteUser(id);
+    return { deletedUser: delUser
+    };
+  };
+  
 
 export const userService = {
-    addUSer,
+    authenticateUser,
+    deleteUser,
+    filterEmail,
     modifyUser,
-    filterUser,
-    deleteUser
+    addUser,
+    showUsers
 }

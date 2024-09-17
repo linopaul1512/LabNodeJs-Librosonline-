@@ -1,4 +1,8 @@
-import { User } from "./entities/User.entities.js"
+import { User } from './entities/User.entity.js';
+
+const findUserByEmail = async (email) => {
+  return await User.findOne({ where: { Email: email } });
+};
 
 const createUser = async (userX) => {
     const newUser = await User.create(userX);
@@ -11,34 +15,31 @@ const modifyUser = async (id, userX) => {
     });
     updUser.Name = userX.Name;
     updUser.Lastname = userX.Lastname;
-    updUser.Ic = userX.Ic;
+    updUser.IdentityCard = userX.IdentityCard;
     updUser.Datebirth = userX.Datebirth;
     updUser.Address = userX.Address;
     updUser.Email = userX.Email;
-    updUser.Role = userX.Role;
+    updUser.Password = userX.Password
     await updUser.save();
     return updUser;
 }
 
-
+const findAll = async () => {
+    return await User.findAll();
+};
 
 const deleteUser = async (id) => {
     const delUser = await User.findOne(
         {where: { UserID: id }
     });
-    await delUser.delUser();
+    await delUser.destroy();
     return delUser;
-};
-
-const filterUser= async (id) => {
-    return await User.findOne(
-        {where: { UserID: id }
-    });
 };
 
 export const userRepository = {
     createUser,
     modifyUser,
+    findAll,
     deleteUser,
-    filterUser
+    findUserByEmail
 }
