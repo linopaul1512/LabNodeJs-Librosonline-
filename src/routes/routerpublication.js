@@ -8,7 +8,7 @@ publicatinRouter.use(bodyParser.urlencoded({
     extended: true
 }))
 
-
+publicatinRouter.get('/publications', publicationController.showPubs); 
 publicatinRouter.post('/publication/add', publicationController.addPub);
 publicatinRouter.put('/publication/:id', publicationController.modifyPub);
 publicatinRouter.get('/publication/:id', publicationController.filterPub); 

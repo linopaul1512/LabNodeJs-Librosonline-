@@ -10,6 +10,7 @@ intercatRouter.use(bodyParser.urlencoded({
 
 
 intercatRouter.post('/intercat/add', intercatController.addIntercat);
+intercatRouter.get('/intercat', intercatController.showIntercat); 
 intercatRouter.put('/intercat/:id', intercatController.modifyIntercat);
 intercatRouter.get('/intercat/:id', intercatController.filterIntercat); 
 intercatRouter.delete('/intercat/:id', intercatController.deleteIntercat);

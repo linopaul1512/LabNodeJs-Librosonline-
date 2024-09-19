@@ -9,6 +9,7 @@ typeRouter.use(bodyParser.urlencoded({
     extended: true
 }))
 
+typeRouter.get('/type', typeController.showType); 
 typeRouter.get('/type/:id', typeController.filterType); 
 typeRouter.delete('/type/:id', typeController.deleteType);
 typeRouter.post('/type/add', typeController.addType);

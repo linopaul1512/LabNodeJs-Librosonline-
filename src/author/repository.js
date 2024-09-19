@@ -5,6 +5,11 @@ const createAuth = async (authorX) => {
     return newAuthor;
 };
 
+const findAll = async () => {
+    return await Author.findAll();
+};
+
+
 const modifyAuth = async (id, authorX) => {
     const updAuthor = await Author.findOne(
         {where: { AuthorID: id }
@@ -32,5 +37,6 @@ export const authorRepository = {
     createAuth,
     modifyAuth,
     deletAuthor,
-    filterAuthor
+    filterAuthor,
+    findAll
 }

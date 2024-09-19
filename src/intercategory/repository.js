@@ -6,6 +6,10 @@ const createIntercat = async (interX) => {
     return newInter;
 };
 
+const findAll = async () => {
+    return await InterCategory.findAll();
+};
+
 const modifyIntercat = async (id, interX) => {
     const updInter = await InterCategory.findOne(
         {where: { InterCategoryID: id }
@@ -34,6 +38,7 @@ export const intercatRepository = {
     createIntercat,
     modifyIntercat,
     deleteIntercat,
-    filterIntercat
+    filterIntercat,
+    findAll
 
 }

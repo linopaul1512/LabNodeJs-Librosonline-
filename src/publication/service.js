@@ -1,6 +1,14 @@
 import { publicationRepository } from "./repository";
 
 
+const showPubs = async () => {
+  const publications = await publicationRepository.findAll();
+  return {
+    publication: publications
+  };
+};
+
+
 const addPub= async (simObj) => {
   const newPub = await publicationRepository.createPub(simObj);
   return {
@@ -40,5 +48,6 @@ export const publicationService = {
     addPub,
     modifyPub,
     deletePub,
-    filterPub
+    filterPub,
+    showPubs
 }

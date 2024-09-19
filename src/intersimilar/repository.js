@@ -6,6 +6,10 @@ const createIntersim= async (interX) => {
     return newInter;
 };
 
+const findAll = async () => {
+    return await InterSimilar.findAll();
+};
+
 const modifyIntersim = async (id, interX) => {
     const updInter = await InterSimilar.findOne(
         {where: { InterTypeID: id }
@@ -34,5 +38,6 @@ export const intersimRepository = {
     createIntersim,
     modifyIntersim,
     deleteIntersim,
-    filterIntersim
+    filterIntersim,
+    findAll
 }

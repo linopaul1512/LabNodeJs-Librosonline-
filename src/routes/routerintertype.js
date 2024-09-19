@@ -8,7 +8,7 @@ intertypeRouter.use(bodyParser.urlencoded({
     extended: true
 }))
 
-
+intertypeRouter.get('/intertype', intertypeController.showIntertypes); 
 intertypeRouter.post('/intertype/add', intertypeController.addIntertype);
 intertypeRouter.put('/intertype/:id', intertypeController.modifyIntertype);
 intertypeRouter.get('/intertype/:id', intertypeController.filterIntertype); 

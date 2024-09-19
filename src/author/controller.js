@@ -5,6 +5,11 @@ const addAuth = async (req, res) => {
     res.status(200).json(await authorService.addAuth(req.body));
 };
 
+const showAuths = async (req, res) => {
+    res.status(200).json(await authorService.showAuths());
+};
+
+
 const modifyAuth = async (req, res) => {
     res.status(200).json(await authorService.modifyAuth(req.params.id, req.body));
 };
@@ -24,6 +29,6 @@ export const authorController = {
     addAuth,
     modifyAuth,
     deleteAuth,
-    filterAuth
-
+    filterAuth,
+    showAuths
 }

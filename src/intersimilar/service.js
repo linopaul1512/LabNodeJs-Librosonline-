@@ -1,5 +1,13 @@
 import { intersimRepository } from './repository.js';
 
+const showIntersim = async () => {
+  const intersims = await intersimRepository.findAll();
+  return {
+    intersim: intersims
+  };
+};
+
+ 
 
 const addIntersim= async (interObj) => {
   const newInter = await intersimRepository.createIntersim(interObj);
@@ -36,5 +44,6 @@ export const intersimilarService = {
     addIntersim,
     modifyIntersim,
     deleteIntersim,
-    filterIntersim
+    filterIntersim,
+    showIntersim
 }

@@ -1,6 +1,10 @@
 import { similarService } from "./service";
 
 
+const showSim = async (req, res) => {
+    res.status(200).json(await similarService.showSim());
+};
+
 const filterSim = async (req, res) => {
     res.status(200).json(await similarService.filterSim(req.params.id));
 };
@@ -21,5 +25,6 @@ export const similarController = {
     addSim,
     modifySim,
     filterSim,
-    deleteSim
+    deleteSim,
+    showSim
 }

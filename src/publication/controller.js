@@ -1,5 +1,8 @@
 import {publicationService} from './service.js';
 
+const showPubs = async (req, res) => {
+    res.status(200).json(await publicationService.showPubs(req.params.id));
+};
 
 const filterPub = async (req, res) => {
     res.status(200).json(await publicationService.filterPub(req.params.id));
@@ -21,5 +24,6 @@ export const publicationController = {
     addPub,
     modifyPub,
     filterPub,
-    deletePub
+    deletePub,
+    showPubs
 }

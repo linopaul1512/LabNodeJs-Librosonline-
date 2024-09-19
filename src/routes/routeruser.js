@@ -9,9 +9,9 @@ userRouter.use(bodyParser.urlencoded({
     extended: true
 }))
 
-userRouter.get('/user/:id', userController.filterUser); 
+userRouter.get('/user', userController.showUsers); 
 userRouter.delete('/user/:id', userController.deleteUser);
-userRouter.post('/user/add', userController.addIUser);
+userRouter.post('/user/add', userController.addUser);
 userRouter.put('/user/:id', userController.modifyUser);
 
 export default userRouter;

@@ -7,6 +7,13 @@ const addCon = async (consultObj) => {
   };
 };
 
+const showCon = async () => {
+  const intertypes = await intertypeRepository.findAll();
+  return {
+    intertypes: intertypes
+  };
+};
+
 const modifyCon = async (id, consultObj) => {
   const updConsult = await consultRepository.modifyConsult(id, consultObj);
   return { 

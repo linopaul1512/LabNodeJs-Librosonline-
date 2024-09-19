@@ -8,6 +8,13 @@ const addIntercat = async (interObj) => {
   };
 };
 
+const showIntercat = async () => {
+  const intercats = await intercatRepository.findAll();
+  return {
+    intercat: intercats
+  };
+};
+
 const modifyIntercat = async (id, interObj) => {
   const updInter = await intercatRepository.modifyIntercat(id, interObj);
   return { 
@@ -36,5 +43,6 @@ export const intercategoryService = {
     addIntercat,
     modifyIntercat,
     deleteIntercat,
-    filterIntercat
+    filterIntercat,
+    showIntercat
 }

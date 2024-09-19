@@ -1,5 +1,8 @@
 import { InterType } from "./entities/InterType.entities.js";
 
+const findAll = async () => {
+    return await InterType.findAll();
+};
 
 const createIntertype = async (interX) => {
     const newInter = await InterType.create(interX);
@@ -34,6 +37,7 @@ export const intertypeRepository = {
     createIntertype,
     modifyIntertype,
     deleteIntertype,
-    filterIntertype
+    filterIntertype,
+    findAll
 
 }

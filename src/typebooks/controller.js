@@ -4,6 +4,10 @@ const filterType = async (req, res) => {
     res.status(200).json(await typeService.filterTypes(req.params.id));
 };
 
+const showType = async (req, res) => {
+    res.status(200).json(await typeService.showType());
+};
+
 const addType = async (req, res) => {
     res.status(200).json(await typeService.addType(req.body));
 };
@@ -21,5 +25,6 @@ export const typeController = {
     addType,
     modifyType,
     filterType,
-    deleteType
+    deleteType,
+    showType
 }

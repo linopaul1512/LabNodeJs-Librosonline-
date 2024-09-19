@@ -1,5 +1,8 @@
 import { Typebooks } from "./entities/Typebooks.entities.js";
 
+const findAll = async () => {
+    return await Typebooks.findAll();
+};
 
 const createType = async (typeX) => {
     const typeX = await Typebooks.create(typeX);
@@ -33,6 +36,7 @@ export const typeRepository = {
     createType,
     modifyType,
     deleteType,
-    filterType
+    filterType,
+    findAll
 
 }

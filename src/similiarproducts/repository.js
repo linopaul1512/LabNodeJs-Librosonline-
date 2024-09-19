@@ -6,6 +6,10 @@ const createSim = async (simX) => {
     return newSim;
 };
 
+const findAll = async () => {
+    return await SimilarProducts.findAll();
+};
+
 const modifySim = async (id, simX) => {
     const updSim = await SimilarProducts.findOne(
         {where: { SimilarID: id }
@@ -35,6 +39,7 @@ export const similarRepository = {
     createSim,
     modifySim,
     deleteSim,
-    filterSim
+    filterSim,
+    findAll
 
 }

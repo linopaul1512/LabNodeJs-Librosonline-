@@ -5,6 +5,10 @@ const filterIntercat = async (req, res) => {
     res.status(200).json(await intercategoryService.filterIntercat(req.params.id));
 };
 
+const showIntercat = async (req, res) => {
+    res.status(200).json(await intercategoryService.showIntercat());
+};
+
 const addIntercat = async (req, res) => {
     res.status(200).json(await intercategoryService.addIntercat(req.body));
 };
@@ -21,5 +25,6 @@ export const intercatController = {
     addIntercat,
     modifyIntercat,
     filterIntercat,
-    deleteIntercat
+    deleteIntercat,
+    showIntercat
 }

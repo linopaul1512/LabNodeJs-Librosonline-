@@ -7,6 +7,13 @@ const addAuth = async (authorObj) => {
   };
 };
 
+const showAuths = async () => {
+  const users = await authorRepository.findAll();
+  return {
+    user: users
+  };
+};
+
 const modifyAuth = async (id, authorObj) => {
   const updAuthor = await authorRepository.modifyAuth(id, authorObj);
   return { 
@@ -34,5 +41,6 @@ export const authorService = {
     addAuth,
     modifyAuth,
     filteraAuthor,
-    deleteAuthor
+    deleteAuthor,
+    showAuths
 }

@@ -5,6 +5,11 @@ const filterIntersim = async (req, res) => {
     res.status(200).json(await intersimilarService.filterIntersim(req.params.id));
 };
 
+const showIntersim = async (req, res) => {
+    res.status(200).json(await intersimilarService.showIntersim());
+};
+
+
 const addIntersimt = async (req, res) => {
     res.status(200).json(await intersimilarService.addIntersim(req.body));
 };
@@ -21,5 +26,6 @@ export const intersimController = {
     addIntersimt,
     modifyIntersim,
     filterIntersim,
-    deleteIntersim
+    deleteIntersim,
+    showIntersim
 }

@@ -1,5 +1,8 @@
 import { Consults } from "./entities/Consults.entities.js"
 
+const findAll = async () => {
+    return await Consults.findAll();
+};
 
 const createConsult = async (consultX) => {
     const newConsult = await Consults.create(consultX);
@@ -36,6 +39,7 @@ export const consultRepository = {
     createConsult,
     modifyConsult,
     deleteConsult,
-    filterConsult
+    filterConsult,
+    findAll
 
 }

@@ -9,6 +9,7 @@ intersimRouter.use(bodyParser.urlencoded({
 }))
 
 intersimRouter.get('/intersim/:id', intersimController.filterIntersim); 
+intersimRouter.get('/intersim', intersimController.showIntersim); 
 intersimRouter.delete('/intersim/:id', intersimController.deleteIntersim);
 intersimRouter.post('/intersim/add', intersimController.addIntersimt);
 intersimRouter.put('/intersim/:id', intersimController.modifyIntersim);

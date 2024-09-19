@@ -22,20 +22,27 @@ const deleteSim = async (id) => {
 };
 
 const filterSim = async (id) => {
-  const intersim = await similarRepository.filterSim(id);
+  const similars = await similarRepository.filterSim(id);
   return {
-    SimilarID: intersim.SimilarID,
-    Name: intersim.Name,
-    Description: intersim.Description,
-    UserID: intersim.UserID,
+    SimilarID: similars.SimilarID,
+    Name: intersim.similars,
+    Description: similars.Description,
+    UserID: similars.UserID,
   };
 };
 
+const showSim = async () => {
+  const similars = await similarRepository.findAll();
+  return {
+    similar: similars
+  };
+};
 
 
 export const similarService = {
     addSim,
     modifySim,
     deleteSim,
-    filterSim
+    filterSim,
+    showSim
 }

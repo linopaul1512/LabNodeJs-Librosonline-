@@ -1,5 +1,8 @@
 import {consultService} from './service.js';
 
+const showCon = async (req, res) => {
+    res.status(200).json(await consultService.());
+};
 
 const filterCon= async (req, res) => {
     res.status(200).json(await consultService.filteraCon(req.params.id));

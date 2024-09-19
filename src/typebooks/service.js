@@ -1,5 +1,11 @@
 import { typeRepository } from "./repository.js";
 
+const showType = async () => {
+  const types = await typeRepository.findAll();
+  return {
+    type: types
+  };
+};
 
 const addType = async (typeObj) => {
   const newType = await typeRepository.createRol(roleObj);
@@ -33,5 +39,6 @@ export const typeService = {
     addType,
     modifyType,
     deleteType,
-    filterTypes
+    filterTypes,
+    showType
 }
