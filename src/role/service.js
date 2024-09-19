@@ -7,6 +7,15 @@ const addRole = async (roleObj) => {
   };
 };
 
+
+const showRole = async () => {
+  const roles = await roleRepository.findAll();
+  return {
+    role: roles
+  };
+};
+
+
 const modifyRole = async (id, roleObj) => {
   const updRole = await roleRepository.modifyRol(id, roleObj);
   return { 
@@ -16,5 +25,6 @@ const modifyRole = async (id, roleObj) => {
 
 export const roleService = {
     addRole,
-    modifyRole
+    modifyRole,
+    showRole
 }

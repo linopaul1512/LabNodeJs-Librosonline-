@@ -41,5 +41,6 @@ export const consultService = {
     addCon,
     modifyCon,
     filteraCon,
-    deleteCon
+    deleteCon,
+    showCon
 }

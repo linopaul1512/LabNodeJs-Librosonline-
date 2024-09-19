@@ -1,7 +1,7 @@
 import {consultService} from './service.js';
 
 const showCon = async (req, res) => {
-    res.status(200).json(await consultService.());
+    res.status(200).json(await consultService.showCon());
 };
 
 const filterCon= async (req, res) => {
@@ -24,5 +24,6 @@ export const consultController = {
     addCon,
     modifyCon,
     filterCon,
-    deleteCon
+    deleteCon,
+    showCon
 }

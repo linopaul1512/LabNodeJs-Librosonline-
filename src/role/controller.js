@@ -1,5 +1,8 @@
 import {roleService} from "./service.js"; 
 
+const showRole = async (req, res) => {
+    res.status(200).json(await roleService.showRole());
+};
 
 const addRole = async (req, res) => {
     res.status(200).json(await roleService.addRole(req.body));
@@ -12,4 +15,5 @@ const modifyRole = async (req, res) => {
 export const roleController = {
     addRole,
     modifyRole,
+    showRole
 }

@@ -9,7 +9,7 @@ similarRouter.use(bodyParser.urlencoded({
     extended: true
 }))
 
-publicatinRouter.get('/similar', similarController.showSim); 
+similarRouter.get('/similar', similarController.showSim); 
 similarRouter.get('/similar/:id', similarController.filterSim); 
 similarRouter.delete('/similar/:id', similarController.deleteSim);
 similarRouter.post('/similar/add', similarController.addSim);

@@ -1,5 +1,9 @@
 import {Role} from "./entities/Role.entity.js";
 
+const findAll = async () => {
+    return await Role.findAll();
+};
+
 const createRol = async (roleX) => {
     const newRole = await Role.create(roleX);
     return newRole;
@@ -16,5 +20,6 @@ const modifyRol = async (id, roleX) => {
 
 export const roleRepository = {
     createRol,
-    modifyRol
+    modifyRol,
+    findAll
 }

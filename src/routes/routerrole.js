@@ -8,7 +8,7 @@ roleRouter.use(bodyParser.urlencoded({
     extended: true
 }))
 
-
+roleRouter.get('/role', roleController.showRole); 
 roleRouter.post('/role/add', roleController.addRole);
 roleRouter.put('/role/:id', roleController.modifyRole);
 
