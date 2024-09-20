@@ -1,6 +1,6 @@
 import express from 'express';
 import bodyParser from 'body-parser';
-import { intersimController } from '../intersimilar/controller';
+import { intersimController } from '../intersimilar/controller.js';
 
 const intersimRouter = express.Router()
 intersimRouter.use(bodyParser.json())

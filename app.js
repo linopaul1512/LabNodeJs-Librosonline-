@@ -8,12 +8,11 @@ import authorRouter from './src/routes/routerauthor.js'
 import intercatRouter from './src/routes/routerintercat.js';
 import intersimRouter from './src/routes/routerintersim.js';
 import intertypeRouter from './src/routes/routerintertype.js';
-import userRouter from './src/routes/routeruser.js';
+import userRouter from './src/routes/userRouter.js';
 import similarRouter from './src/routes/routersimilar.js';
 import consultRouter from './src/routes/routerconsult.js';
 import categoryRouter from './src/routes/categoryRouter.js';
 import loginRouter from './src/routes/loginRouter.js';
-import userRouter from './src/routes/userRouter.js';
 import publicatinRouter from './src/routes/routerpublication.js';
 import { InterType } from './src/intertypes/entities/InterType.entities.js';
 import { Typebooks } from './src/typebooks/entities/Typebooks.entities.js';
@@ -91,8 +90,8 @@ try{
     Publication.belongsTo(User, { foreignKey: 'UserID' });
 
     //relaciones de usuario y productos similares
-    User.hasMany(SimilarProducts, { foreignKey: 'SimilarID ' }); 
-    SimilarProducts.belongsTo(User, { foreignKey: 'SimilarID ' });
+    User.hasMany(SimilarProducts, { foreignKey: 'UserID' }); 
+    SimilarProducts.belongsTo(User, { foreignKey: 'UserID ' });
     
     
     //await sequelize.authenticate();

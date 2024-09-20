@@ -5,9 +5,11 @@ const findAll = async () => {
 };
 
 const createType = async (typeX) => {
-    const typeX = await Typebooks.create(typeX);
-    return typeX;
+    const newType = await Typebooks.create(typeX);
+    return newType;
 };
+
+
 
 const modifyType = async (id, typeX) => {
     const updType = await Typebooks.findOne(

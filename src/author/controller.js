@@ -9,7 +9,6 @@ const showAuths = async (req, res) => {
     res.status(200).json(await authorService.showAuths());
 };
 
-
 const modifyAuth = async (req, res) => {
     res.status(200).json(await authorService.modifyAuth(req.params.id, req.body));
 };

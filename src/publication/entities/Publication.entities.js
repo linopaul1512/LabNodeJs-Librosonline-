@@ -1,4 +1,3 @@
-import { name } from "body-parser";
 import { sequelize } from "../../db/db.config.js";
 import { Sequelize } from "sequelize";
 export const Publication = sequelize.define('publication',
@@ -21,7 +20,7 @@ export const Publication = sequelize.define('publication',
         allowNull: false
     },
     Date: {
-        type: Sequelize.Date,
+        type: Sequelize.DATE,
         allowNull: false
     },
     Description: {

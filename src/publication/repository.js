@@ -6,9 +6,11 @@ const createPub= async (pubX) => {
     return newPub;
 };
 
+
 const findAll = async () => {
     return await Publication.findAll();
 };
+
 const modifyPub = async (id, pubX) => {
     const updPub = await Publication.findOne(
         {where: { PublicationID: id }

@@ -1,5 +1,13 @@
-import { publicationRepository } from "./repository";
+import { publicationRepository } from "./repository.js";
 
+
+
+const addPublication= async (pubObj) => {
+  const newPub = await publicationRepository.createPub(pubObj);
+  return {
+    similarproducts: newPub
+  };
+};
 
 const showPubs = async () => {
   const publications = await publicationRepository.findAll();

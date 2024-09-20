@@ -1,6 +1,6 @@
 import bodyParser from 'body-parser';
 import express from 'express';
-import { publicationController } from '../publication/controller';
+import { publicationController } from '../publication/controller.js';
 
 const publicatinRouter = express.Router()
 publicatinRouter.use(bodyParser.json())
