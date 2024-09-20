@@ -1,4 +1,4 @@
-import { SimilarProducts } from "./entities/Similarproducts.js";
+import { SimilarProducts } from "./entities/Similarproducts.entity.js";
 
 
 const createSim = async (simX) => {

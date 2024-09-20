@@ -1,4 +1,4 @@
-import { Publication } from './entities/Publication.entities.js'
+import { Publication } from './entities/Publication.entity.js'
 
 
 const createPub= async (pubX) => {

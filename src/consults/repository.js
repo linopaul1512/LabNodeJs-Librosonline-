@@ -1,4 +1,4 @@
-import { Consults } from "./entities/Consults.entities.js"
+import { Consults } from "./entities/Consults.entity.js"
 
 
 const createConsult = async (consultX) => {

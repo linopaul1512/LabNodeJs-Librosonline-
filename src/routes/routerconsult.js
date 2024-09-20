@@ -1,6 +1,6 @@
 import bodyParser from 'body-parser';
 import express from 'express';
-import { consultController } from '../consults/controller';
+import { consultController } from '../consults/controller.js';
 
 const consultRouter = express.Router()
 consultRouter.use(bodyParser.json())

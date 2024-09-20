@@ -1,4 +1,4 @@
-import { publicationRepository } from "./repository";
+import { publicationRepository } from "./repository.js";
 
 
 const addPub= async (simObj) => {

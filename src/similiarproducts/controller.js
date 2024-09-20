@@ -1,4 +1,4 @@
-import { similarService } from "./service";
+import { similarService } from "./service.js";
 
 
 const filterSim = async (req, res) => {

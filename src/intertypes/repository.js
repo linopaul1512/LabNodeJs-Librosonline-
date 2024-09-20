@@ -1,4 +1,4 @@
-import { InterType } from "./entities/InterType.entities.js";
+import { InterType } from "./entities/InterType.entity.js";
 
 
 const createIntertype = async (interX) => {

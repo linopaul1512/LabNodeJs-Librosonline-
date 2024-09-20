@@ -1,14 +1,18 @@
 import { sequelize } from "../../db/db.config.js";
 import { Sequelize } from "sequelize";
-export const Typebooks = sequelize.define('typebooks',
+export const InterType = sequelize.define('intertype',
 {
-    TypeID: {
+    InterTypeID: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
         primaryKey: true
     },
-    Description: {
-        type: Sequelize.STRING,
+    TypeID: {
+        type: Sequelize.INTEGER,
+        allowNull: false
+    },
+    PublicationID: {
+        type: Sequelize.INTEGER,
         allowNull: false
     }
 });
