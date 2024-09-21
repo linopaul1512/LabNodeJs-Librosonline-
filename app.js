@@ -56,13 +56,13 @@ try{
     User.hasOne(Role, { foreignKey: 'RoleID' });
     Role.belongsTo(User, { foreignKey: 'RoleID' });
     
-    //relaciones de categoría
-    Category.hasOne(InterCategory, { foreignKey: 'CategoryID' }); 
-    InterCategory.belongsTo(Category, { foreignKey: 'CategoryID' });
+    //relaciones de categoría con intermedia
+    InterCategory.hasOne(Category, { foreignKey: 'CategoryID' }); 
+    Category.belongsTo(InterCategory, { foreignKey: 'CategoryID' });
     
-    Publication.hasOne(InterCategory, { foreignKey: 'CategoryID' }); 
-    InterCategory.belongsTo(Publication, { foreignKey: 'CategoryID' });
-
+    Publication.hasOne(InterCategory, { foreignKey: 'PublicationID' }); 
+    InterCategory.belongsTo(Publication, { foreignKey: 'PublicationID' });
+    
     //relaciones de tipo libro
     Typebooks.hasOne(InterType, { foreignKey: 'TypeID' }); 
     InterType.belongsTo(Typebooks, { foreignKey: 'TypeID' });
@@ -71,27 +71,35 @@ try{
     InterType.belongsTo(Publication, { foreignKey: 'TypeID' });
 
     //relaciones de productos similares
-    SimilarProducts.hasOne(InterSimilar, { foreignKey: 'SimilarID ' }); 
-    InterSimilar.belongsTo(SimilarProducts, { foreignKey: 'SimilarID ' });
+    SimilarProducts.hasOne(InterSimilar, { foreignKey: 'SimilarID' }); 
+    InterSimilar.belongsTo(SimilarProducts, { foreignKey: 'SimilarID' });
 
     Publication.hasOne(InterType, { foreignKey: 'SimilarID' }); 
     InterType.belongsTo(Publication, { foreignKey: 'SimilarID' });
 
     //relaciones de autor con publicacion
     Author.hasMany(Publication, { foreignKey: 'AuthorID' }); 
-    Publication.belongsTo(Author, { foreignKey: 'AuthorID ' });
+    Publication.belongsTo(Author, { foreignKey: 'AuthorID' });
 
     //relaciones de consultas y publicacion
-    Consults.hasOne(Publication, { foreignKey: 'AuthorID' }); 
-    Publication.belongsTo(Consults, { foreignKey: 'AuthorID' });
+    Publication.hasOne(Consults, { foreignKey: 'PublicationID' }); 
+    Consults.belongsTo(Publication, { foreignKey: 'PublicationID' });
+
+    //relaciones de consultas y usuario
+    User.hasOne(Consults, { foreignKey: 'UserID' }); 
+    Consults.belongsTo(User, { foreignKey: 'UserID' });
+    
+    //relaciones de intersimilar y publicacion
+    Publication.hasOne(InterSimilar, { foreignKey: 'PublicationID' }); 
+    InterSimilar.belongsTo(Publication, { foreignKey: 'PublicationID' });
 
     //relaciones de usuario y publicacion
-    User.hasMany(Publication, { foreignKey: 'UserID' }); 
-    Publication.belongsTo(User, { foreignKey: 'UserID' });
+    Publication.hasOne(User, { foreignKey: 'UserID' }); 
+    User.belongsTo(Publication, { foreignKey: 'UserID' });
 
     //relaciones de usuario y productos similares
     User.hasMany(SimilarProducts, { foreignKey: 'UserID' }); 
-    SimilarProducts.belongsTo(User, { foreignKey: 'UserID ' });
+    SimilarProducts.belongsTo(User, { foreignKey: 'UserID' });
     
     
     //await sequelize.authenticate();

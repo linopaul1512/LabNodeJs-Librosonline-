@@ -18,13 +18,8 @@ export const SimilarProducts = sequelize.define('similarproducts', {
     UserID: {
       type: Sequelize.INTEGER,
       allowNull: false,
-      references: {
-        model: 'users',
-        key: 'UserID'
-      },
-      onDelete: 'SET NULL',
-      onUpdate: 'CASCADE'
     }
-  }, {
+  }, 
+  {
     timestamps: true
   });

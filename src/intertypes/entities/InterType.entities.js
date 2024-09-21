@@ -8,7 +8,7 @@ export const InterType = sequelize.define('intertype',
         primaryKey: true
     },
     TypeID: {
-        type: Sequelize.STRING,
+        type: Sequelize.INTEGER,
         allowNull: false
     },
     PublicationID: {
