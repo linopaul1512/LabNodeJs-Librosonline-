@@ -59,8 +59,8 @@ try{
     //relaciones de categoría con intermedia
     InterCategory.hasOne(Category, { foreignKey: 'CategoryID' }); 
     Category.belongsTo(InterCategory, { foreignKey: 'CategoryID' });
-    
-    Publication.hasOne(InterCategory, { foreignKey: 'PublicationID' }); 
+
+    Publication.hasMany(InterCategory, { foreignKey: 'PublicationID' });
     InterCategory.belongsTo(Publication, { foreignKey: 'PublicationID' });
     
     //relaciones de tipo libro
@@ -82,15 +82,15 @@ try{
     Publication.belongsTo(Author, { foreignKey: 'AuthorID' });
 
     //relaciones de consultas y publicacion
-    Publication.hasOne(Consults, { foreignKey: 'PublicationID' }); 
+    Publication.hasMany(Consults, { foreignKey: 'PublicationID' });
     Consults.belongsTo(Publication, { foreignKey: 'PublicationID' });
 
     //relaciones de consultas y usuario
-    User.hasOne(Consults, { foreignKey: 'UserID' }); 
+    User.hasMany(Consults, { foreignKey: 'UserID' });
     Consults.belongsTo(User, { foreignKey: 'UserID' });
     
     //relaciones de intersimilar y publicacion
-    Publication.hasOne(InterSimilar, { foreignKey: 'PublicationID' }); 
+    Publication.hasMany(InterSimilar, { foreignKey: 'PublicationID' });
     InterSimilar.belongsTo(Publication, { foreignKey: 'PublicationID' });
 
     //relaciones de usuario y publicacion
