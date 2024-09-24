@@ -1,4 +1,5 @@
 import {userRepository} from "./repository.js";
+import { User } from './entities/User.entity.js';
 
 const authenticateUser = async (email, password) => {
   const user = await userRepository.findUserByEmail(email);
@@ -15,42 +16,49 @@ const authenticateUser = async (email, password) => {
 };
 
 const showUsers = async () => {
-    const users = await userRepository.findAll();
-    return {
-      user: users
-    };
+  const users = await userRepository.findAll();
+  return {
+    user: users
   };
-  
-  const addUser = async (userObj) => {
-    const newUser = await userRepository.createUser(userObj);
-    return {
-      user: newUser
-    };
+};
+
+const addUser = async (userObj) => {
+  const newUser = await userRepository.createUser(userObj);
+  return {
+    user: newUser
   };
-  
-  const modifyUser = async (id, userObj) => {
-    const updUser = await userRepository.modifyUser(id, userObj);
-    return { 
-      updatedUser: updUser
-    };
+};
+
+const modifyUser = async (id, userObj) => {
+  const updUser = await userRepository.modifyUser(id, userObj);
+  return { 
+    updatedUser: updUser
   };
-  
-  const filterEmail = async (email) => {
-    const user = await userRepository.findUserByEmail(email);
-    return {
-      UserID: user.CategoryID,
-      Name: user.Name,
-      Lastname: user.Lastname,
-      Email: user.Email
-    };
+};
+
+const filterEmail = async (email) => {
+  const user = await userRepository.findUserByEmail(email);
+  return {
+    UserID: user.CategoryID,
+    Name: user.Name,
+    Lastname: user.Lastname,
+    Email: user.Email
   };
-  
-  const deleteUser = async (id) => {
-    const delUser = await userRepository.deleteUser(id);
-    return { deletedUser: delUser
-    };
+};
+
+const deleteUser = async (id) => {
+  const delUser = await userRepository.deleteUser(id);
+  return { deletedUser: delUser
   };
-  
+};
+
+const getUserRole = async (id) => {
+  const user = await User.findByPk(id);
+  if (!user) {
+    throw new Error('Usuario no encontrado');
+  }
+  return user.RoleID;
+};
 
 export const userService = {
     authenticateUser,
@@ -58,5 +66,6 @@ export const userService = {
     filterEmail,
     modifyUser,
     addUser,
-    showUsers
+    showUsers,
+    getUserRole
 }
