@@ -20,7 +20,7 @@ const deleteAuthor = async (id) => {
   };
 };
 
-const filteraAuthor = async (id) => {
+const filterAuthor = async (id) => {
   const author = await authorRepository.filterAuthor(id);
   return {
     AuthorID: author.AuthorID,
@@ -30,9 +30,18 @@ const filteraAuthor = async (id) => {
   };
 };
 
+const showAuthors = async () => {
+  const authors = await authorRepository.findAll();
+  return {
+    author: authors
+  };
+};
+
+
 export const authorService = {
     addAuth,
     modifyAuth,
-    filteraAuthor,
-    deleteAuthor
+    filterAuthor,
+    deleteAuthor,
+    showAuthors
 }

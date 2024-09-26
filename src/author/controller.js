@@ -17,13 +17,14 @@ const filterAuth = async (req, res) => {
     res.status(200).json(await authorService.filterAuthor(req.params.id));
 };
 
-
-
+const showAuthors = async (req, res) => {
+    res.status(200).json(await authorService.showAuthors());
+};
 
 export const authorController = {
     addAuth,
     modifyAuth,
     deleteAuth,
-    filterAuth
-
+    filterAuth,
+    showAuthors
 }

@@ -1,7 +1,7 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import { typeController } from '../typebooks/controller.js';
-
+import { authenticator } from '../validations/authenticator.js';
 
 const typeRouter = express.Router()
 typeRouter.use(bodyParser.json())
@@ -65,7 +65,7 @@ typeRouter.get('/type/:id', typeController.filterType);
  *       404:
  *         description: Tipo de libro no encontrado
  */
-typeRouter.delete('/type/:id', typeController.deleteType);
+typeRouter.delete('/type/:id', authenticator.authorizePublisher, typeController.deleteType);
 
 /**
  * @swagger
@@ -97,7 +97,7 @@ typeRouter.delete('/type/:id', typeController.deleteType);
  *       400:
  *         description: Error en la creación del tipo de libro
  */
-typeRouter.post('/type/add', typeController.addType);
+typeRouter.post('/type/add', authenticator.authorizePublisher, typeController.addType);
 
 /**
  * @swagger
@@ -136,6 +136,6 @@ typeRouter.post('/type/add', typeController.addType);
  *       404:
  *         description: Tipo de libro no encontrado
  */
-typeRouter.put('/type/:id', typeController.modifyType);
+typeRouter.put('/type/:id', authenticator.authorizePublisher, typeController.modifyType);
 
 export default typeRouter;

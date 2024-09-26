@@ -30,8 +30,6 @@ const filterIntersim = async (id) => {
   };
 };
 
-
-
 export const intersimilarService = {
     addIntersim,
     modifyIntersim,

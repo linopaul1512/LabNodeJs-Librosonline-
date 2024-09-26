@@ -1,7 +1,7 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import { similarController } from '../similiarproducts/controller.js';
-
+import { authenticator } from '../validations/authenticator.js';
 
 const similarRouter = express.Router()
 similarRouter.use(bodyParser.json())
@@ -69,7 +69,7 @@ similarRouter.get('/similar/:id', similarController.filterSim);
  *       404:
  *         description: Producto similar no encontrado
  */
-similarRouter.delete('/similar/:id', similarController.deleteSim);
+similarRouter.delete('/similar/:id', authenticator.authorizePublisher, similarController.deleteSim);
 
 /**
  * @swagger
@@ -103,7 +103,7 @@ similarRouter.delete('/similar/:id', similarController.deleteSim);
  *       400:
  *         description: Error creando del producto similar
  */
-similarRouter.post('/similar/add', similarController.addSim);
+similarRouter.post('/similar/add', authenticator.authorizePublisher, similarController.addSim);
 
 /**
  * @swagger
@@ -144,6 +144,6 @@ similarRouter.post('/similar/add', similarController.addSim);
  *       404:
  *         description: Producto similar no encontrado
  */
-similarRouter.put('/similar/:id', similarController.modifySim);
+similarRouter.put('/similar/:id', authenticator.authorizePublisher, similarController.modifySim);
 
 export default similarRouter;

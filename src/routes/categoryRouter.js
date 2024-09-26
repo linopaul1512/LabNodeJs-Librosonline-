@@ -1,6 +1,7 @@
 import { categoryController } from '../category/controller.js';
 import bodyParser from 'body-parser';
 import express from 'express';
+import { authenticator } from '../validations/authenticator.js';
 
 const categoryRouter = express.Router()
 categoryRouter.use(bodyParser.json())
@@ -90,7 +91,7 @@ categoryRouter.get('/category/filter/:name', categoryController.filterCategory);
  *       400:
  *         description: Error en la creación de la categoría
  */
-categoryRouter.post('/category/add', categoryController.addCategory);
+categoryRouter.post('/category/add', authenticator.authorizePublisher, categoryController.addCategory);
 
 /**
  * @swagger
@@ -127,7 +128,7 @@ categoryRouter.post('/category/add', categoryController.addCategory);
  *       404:
  *         description: Categoría no encontrada
  */
-categoryRouter.put('/category/:id', categoryController.modifyCategory);
+categoryRouter.put('/category/:id', authenticator.authorizePublisher, categoryController.modifyCategory);
 
 /**
  * @swagger
@@ -155,6 +156,6 @@ categoryRouter.put('/category/:id', categoryController.modifyCategory);
  *       404:
  *         description: Categoría no encontrada
  */
-categoryRouter.delete('/category/:id', categoryController.deleteCategory);
+categoryRouter.delete('/category/:id', authenticator.authorizePublisher, categoryController.deleteCategory);
 
 export default categoryRouter;

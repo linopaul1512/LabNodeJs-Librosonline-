@@ -1,6 +1,5 @@
 import {intertypeService} from './service.js';
 
-
 const filterIntertype = async (req, res) => {
     res.status(200).json(await intertypeService.filterIntertype(req.params.id));
 };

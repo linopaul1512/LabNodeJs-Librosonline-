@@ -1,6 +1,5 @@
 import { InterType } from "./entities/InterType.entity.js";
 
-
 const createIntertype = async (interX) => {
     const newInter = await InterType.create(interX);
     return newInter;

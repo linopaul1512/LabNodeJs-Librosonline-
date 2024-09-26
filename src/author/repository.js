@@ -28,9 +28,14 @@ const filterAuthor = async (id) => {
     });
 };
 
+const findAll = async () => {
+    return await Author.findAll();
+};
+
 export const authorRepository = {
     createAuth,
     modifyAuth,
     deletAuthor,
-    filterAuthor
+    filterAuthor,
+    findAll
 }
