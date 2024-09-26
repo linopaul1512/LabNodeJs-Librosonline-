@@ -1,6 +1,7 @@
 import bodyParser from 'body-parser';
 import express from 'express';
 import { authenticateToken } from '../validations/authMiddleware.js';
+import {intercatController} from '../intercategory/controller.js'
 
 const intercatRouter = express.Router()
 intercatRouter.use(bodyParser.json())

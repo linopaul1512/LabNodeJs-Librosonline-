@@ -1,6 +1,9 @@
 import bodyParser from 'body-parser';
 import express from 'express';
-import { authenticateToken } from '../validations/authMiddleware';
+import { authenticateToken } from '../validations/authMiddleware.js';
+import {intertypeController} from '../intertypes/controller.js'
+
+
 
 const intertypeRouter = express.Router()
 intertypeRouter.use(bodyParser.json())

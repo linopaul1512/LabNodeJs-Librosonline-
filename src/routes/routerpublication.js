@@ -1,7 +1,7 @@
 import bodyParser from 'body-parser';
 import express from 'express';
 import { publicationController } from '../publication/controller.js';
-import { authenticateToken } from '../validations/authMiddleware';
+import { authenticateToken } from '../validations/authMiddleware.js';
 
 
 const publicatinRouter = express.Router()

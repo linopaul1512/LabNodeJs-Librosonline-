@@ -1,7 +1,6 @@
 import { authorService } from "./service.js";
 import { validateAuthorFields } from "../validations/validateFields.js";
 
-
 // Agregar
 const addAuth = async (req, res) => {
     const error = validateAuthorFields(req, res);
@@ -53,7 +52,6 @@ const filterAuth = async (req, res) => {
     }
 };
 
-// Exportamos las rutas del controlador
 export const authorController = {
     addAuth,
     modifyAuth,

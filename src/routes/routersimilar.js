@@ -1,7 +1,7 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import { similarController } from '../similiarproducts/controller.js';
-import { authenticateToken } from '../validations/authMiddleware';
+import { authenticateToken } from '../validations/authMiddleware.js';
 
 
 const similarRouter = express.Router()

@@ -1,7 +1,7 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import { typeController } from '../typebooks/controller.js';
-import { authenticateToken } from '../validations/authMiddleware';
+import { authenticateToken } from '../validations/authMiddleware.js';
 
 
 const typeRouter = express.Router()

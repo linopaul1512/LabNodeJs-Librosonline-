@@ -1,7 +1,6 @@
-const { check, validationResult } = require('express-validator');
+import { check, validationResult } from 'express-validator';
 
-// Middleware para validar los campos de Author
-const validateAuthorFields = [
+export const validateAuthorFields = [
     check('Name')
         .notEmpty().withMessage('El nombre no puede estar vacío')
         .isString().withMessage('El nombre debe ser un texto'),
@@ -14,7 +13,6 @@ const validateAuthorFields = [
         .notEmpty().withMessage('El país no puede estar vacío')
         .isString().withMessage('El país debe ser un texto válido'),
     
-    // Middleware para manejar los errores de validación
     (req, res, next) => {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
@@ -23,5 +21,3 @@ const validateAuthorFields = [
         next();
     }
 ];
-
-module.exports = { validateAuthorFields };
