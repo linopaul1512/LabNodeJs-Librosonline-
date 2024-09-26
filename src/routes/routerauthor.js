@@ -9,9 +9,9 @@ authorRouter.use(bodyParser.json());
 authorRouter.use(bodyParser.urlencoded({ extended: true }));
 
 authorRouter.get('/author/:id', validateAuthorFields, authenticateToken, authorController.filterAuth); 
-authorRouter.get('/author', validateAuthorFields, authenticateToken, authorController.showAuth); 
-authorRouter.delete('/author/:id', validateAuthorFields, authenticateToken, authorController.deleteAuth);
-authorRouter.post('/author/add', validateAuthorFields, authenticateToken, authorController.addAuth);
+authorRouter.get('/author', authenticateToken, authorController.showAuth); 
+authorRouter.delete('/author/:id', authenticateToken, authorController.deleteAuth);
+authorRouter.post('/author/add', authenticateToken, authorController.addAuth);
 authorRouter.put('/author/:id', validateAuthorFields, authenticateToken, authorController.modifyAuth);
 
 export default authorRouter;
