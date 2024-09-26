@@ -9,7 +9,7 @@ publicatinRouter.use(bodyParser.json())
 publicatinRouter.use(bodyParser.urlencoded({
     extended: true
 }))
-
+//
 publicatinRouter.get('/publications', authenticateToken, publicationController.showPubs); 
 publicatinRouter.post('/publication/add', authenticateToken, publicationController.addPub);
 publicatinRouter.put('/publication/:id', authenticateToken, publicationController.modifyPub);
