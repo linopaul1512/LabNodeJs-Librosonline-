@@ -1,9 +1,17 @@
 import { intertypeRepository } from './repository.js';
 
+
 const addIntertype= async (interObj) => {
   const newInter = await intertypeRepository.createIntertype(interObj);
   return {
     intertype: newInter
+  };
+};
+
+const showIntertype = async () => {
+  const intertypes = await intertypeRepository.findAll();
+  return {
+    intertype: intertypes
   };
 };
 
@@ -29,9 +37,12 @@ const filterIntertype = async (id) => {
   };
 };
 
+
+
 export const intertypeService = {
     addIntertype,
     modifyIntertype,
     deleteIntertype,
-    filterIntertype
+    filterIntertype,
+    showIntertype
 }

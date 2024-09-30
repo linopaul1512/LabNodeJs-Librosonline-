@@ -1,38 +1,43 @@
-import { InterType } from "./entities/InterType.entity.js";
+import { InterSimilar } from './entities/Intersimilar.entity.js'
 
-const createIntertype = async (interX) => {
-    const newInter = await InterType.create(interX);
+
+const createIntersim= async (interX) => {
+    const newInter = await InterSimilar.create(interX);
     return newInter;
 };
 
-const modifyIntertype = async (id, interX) => {
-    const updInter = await InterType.findOne(
+const findAll = async () => {
+    return await InterSimilar.findAll();
+};
+
+const modifyIntersim = async (id, interX) => {
+    const updInter = await InterSimilar.findOne(
         {where: { InterTypeID: id }
     });
-    updInter.TypeID = interX.TypeID;
-    updInter.PublicationID = interX.PublicationID;
+    updInter.PulicationID = interX.PublicationID;
+    updInter.SimilarID = interX.SimilarID;
     await updInter.save();
     return updInter;
 }
 
-const deleteIntertype = async (id) => {
-    const delInter = await InterType.findOne(
-        {where: { InterTypeID: id }
+const deleteIntersim = async (id) => {
+    const delInter = await InterSimilar.findOne(
+        {where: { InterSimilarID: id }
     });
-    await delInter.deleteIntertype();
+    await delInter.deleteIntersim();
     return delInter;
 };
 
-const filterIntertype = async (id) => {
-    return await InterType.findOne(
-        {where: { InterTypeID: id }
+const filterIntersim = async (id) => {
+    return await InterSimilar.findOne(
+        {where: { InterSimilarID: id }
     });
 };
 
-export const intertypeRepository = {
-    createIntertype,
-    modifyIntertype,
-    deleteIntertype,
-    filterIntertype
-
+export const intersimRepository = {
+    createIntersim,
+    modifyIntersim,
+    deleteIntersim,
+    filterIntersim,
+    findAll
 }

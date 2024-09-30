@@ -28,7 +28,7 @@ const modifyAuth = async (req, res) => {
 };
 
 //mostar todos los autores
-const showAuth = async (req, res) => {
+const showAuths = async (req, res) => {
     res.status(200).json(await authorService.showAuths());
 };
 
@@ -59,5 +59,5 @@ export const authorController = {
     modifyAuth,
     deleteAuth,
     filterAuth,
-    showAuth
+    showAuths
 }
