@@ -30,9 +30,14 @@ const filterIntersim = async (id) => {
     });
 };
 
+const findAll = async () => {
+    return await Author.findAll();
+};
+
 export const intersimRepository = {
     createIntersim,
     modifyIntersim,
     deleteIntersim,
-    filterIntersim
+    filterIntersim,
+    findAll
 }

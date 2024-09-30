@@ -59,5 +59,5 @@ export const authorController = {
     modifyAuth,
     deleteAuth,
     filterAuth,
-    showAuthors
+    showAuth
 }
