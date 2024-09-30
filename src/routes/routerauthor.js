@@ -43,7 +43,7 @@ authorRouter.use(bodyParser.urlencoded({
  *       404:
  *         description: Autor no encontrado
  */
-authorRouter.get('/author/:id', authorController.filterAuth); 
+authorRouter.get('/author/:id',authenticateToken, authenticator.authorizePublisher, authorController.filterAuth); 
 
 /**
  * @swagger
@@ -71,7 +71,7 @@ authorRouter.get('/author/:id', authorController.filterAuth);
  *       404:
  *         description: Autor no encontrado
  */
-authorRouter.delete('/author/:id', authenticator.authorizePublisher, authorController.deleteAuth);
+authorRouter.delete('/author/:id',authenticateToken, authenticator.authorizePublisher, authorController.deleteAuth);
 
 /**
  * @swagger
@@ -146,7 +146,7 @@ authorRouter.post('/author/add', authenticateToken, authenticator.authorizePubli
  *       404:
  *         description: Autor no encontrado
  */
-authorRouter.put('/author/:id', authenticator.authorizePublisher, authorController.modifyAuth);
+authorRouter.put('/author/:id', authenticateToken, authenticator.authorizePublisher, authorController.modifyAuth);
 
 /**
  * @swagger
@@ -169,6 +169,6 @@ authorRouter.put('/author/:id', authenticator.authorizePublisher, authorControll
  *       404:
  *         description: Autores no encontrados
  */
-authorRouter.get('/authors', authorController.showAuthors);
+authorRouter.get('/authors', authenticateToken, authorController.showAuthors);
 
 export default authorRouter;

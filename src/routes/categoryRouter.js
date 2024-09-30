@@ -35,6 +35,7 @@ categoryRouter.use(bodyParser.urlencoded({
  */
 categoryRouter.get('/categories', categoryController.showCategories); 
 
+
 /**
  * @swagger
  * /category/filter/{name}:
@@ -63,7 +64,7 @@ categoryRouter.get('/categories', categoryController.showCategories);
  *       404:
  *         description: Categoría no encontrada
  */
-categoryRouter.get('/category/filter/:name', categoryController.filterCategory);
+categoryRouter.get('/category/filter/:name',authenticateToken, authenticator.authorizePublisher, categoryController.filterCategory);
 
 /**
  * @swagger
@@ -130,7 +131,7 @@ categoryRouter.post('/category/add', authenticateToken, authenticator.authorizeP
  *       404:
  *         description: Categoría no encontrada
  */
-categoryRouter.put('/category/:id', authenticator.authorizePublisher, categoryController.modifyCategory);
+categoryRouter.put('/category/:id',authenticateToken, authenticator.authorizePublisher, categoryController.modifyCategory);
 
 /**
  * @swagger
@@ -158,6 +159,6 @@ categoryRouter.put('/category/:id', authenticator.authorizePublisher, categoryCo
  *       404:
  *         description: Categoría no encontrada
  */
-categoryRouter.delete('/category/:id', authenticator.authorizePublisher, categoryController.deleteCategory);
+categoryRouter.delete('/category/:id', authenticateToken, categoryController.deleteCategory);
 
 export default categoryRouter;

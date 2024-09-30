@@ -29,7 +29,7 @@ const modifyIntersim = async (req, res) => {
 };
 
 //mostar todos 
-const showIntersim  = async (req, res) => {
+const showIntersims  = async (req, res) => {
     res.status(200).json(await intersimilarService.showIntersim());
 };
 
@@ -59,5 +59,5 @@ export const intersimController = {
     modifyIntersim,
     filterIntersim,
     deleteIntersim,
-    showIntersim
+    showIntersims
 }
