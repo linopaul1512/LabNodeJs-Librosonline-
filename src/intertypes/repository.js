@@ -1,5 +1,4 @@
-import { InterSimilar } from './entities/Intersimilar.entity.js'
-
+import { InterSimilar } from "../intersimilar/entities/Intersimilar.entity.js";
 
 const createIntersim= async (interX) => {
     const newInter = await InterSimilar.create(interX);
@@ -34,7 +33,7 @@ const filterIntersim = async (id) => {
     });
 };
 
-export const intersimRepository = {
+export const intertypeRepository = {
     createIntersim,
     modifyIntersim,
     deleteIntersim,

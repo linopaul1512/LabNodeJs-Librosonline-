@@ -1,6 +1,5 @@
 import { intertypeRepository } from './repository.js';
 
-
 const addIntertype= async (interObj) => {
   const newInter = await intertypeRepository.createIntertype(interObj);
   return {

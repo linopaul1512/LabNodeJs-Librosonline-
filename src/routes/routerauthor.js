@@ -169,6 +169,6 @@ authorRouter.put('/author/:id', authenticateToken, authenticator.authorizePublis
  *       404:
  *         description: Autores no encontrados
  */
-authorRouter.get('/authors', authenticateToken, authorController.showAuthors);
+authorRouter.get('/authors', authenticateToken, authorController.showAuths);
 
 export default authorRouter;

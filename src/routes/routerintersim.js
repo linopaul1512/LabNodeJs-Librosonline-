@@ -101,7 +101,7 @@ intersimRouter.delete('/intersim/:id', authenticateToken, authenticator.authoriz
  *       400:
  *         description: Error en la creación del Intersimilar
  */
-intersimRouter.post('/intersim/add', authenticateToken, authenticator.authorizePublisher, validateInterSimilarFields, intersimController.addIntersimt);
+intersimRouter.post('/intersim/add', authenticateToken, authenticator.authorizePublisher, validateInterSimilarFields, intersimController.addIntersim);
 
 /**
  * @swagger
