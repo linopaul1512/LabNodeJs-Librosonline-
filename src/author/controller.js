@@ -1,5 +1,7 @@
 import { authorService } from "./service.js"; 
+import { validateAuthorFields } from "../validations/validateFields.js";
 
+//Agregar
 const addAuth = async (req, res) => {
     const error = validateAuthorFields(req, res);
     if (error) return;  

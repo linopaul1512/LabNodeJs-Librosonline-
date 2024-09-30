@@ -30,10 +30,22 @@ const filterIntercat = async (id) => {
     });
 };
 
+const findAll = async () => {
+    return await InterCategory.findAll();
+};
+
+const showIntercat = async () => {
+    const intercats = await intercatRepository.findAll();
+    return {
+      intercat: intercats
+    };
+  };
+
 export const intercatRepository = {
     createIntercat,
     modifyIntercat,
     deleteIntercat,
-    filterIntercat
+    filterIntercat, 
+    findAll
 
 }
