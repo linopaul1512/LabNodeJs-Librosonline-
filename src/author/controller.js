@@ -1,7 +1,5 @@
 import { authorService } from "./service.js"; 
 
-
-// Agregar
 const addAuth = async (req, res) => {
     const error = validateAuthorFields(req, res);
     if (error) return;  
@@ -51,6 +49,8 @@ const filterAuth = async (req, res) => {
         res.status(500).json({ message: 'Error al filtrar el autor', error });
     }
 };
+
+
 
 export const authorController = {
     addAuth,

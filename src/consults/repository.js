@@ -6,6 +6,10 @@ const createConsult = async (consultX) => {
     return newConsult;
 };
 
+const findAll = async () => {
+    return await Consults.findAll();
+};
+
 const modifyConsult = async (id, consultX) => {
     const updConsult = await Consults.findOne(
         {where: { ConsultID: id }
@@ -36,6 +40,7 @@ export const consultRepository = {
     createConsult,
     modifyConsult,
     deleteConsult,
-    filterConsult
+    filterConsult,
+    findAll
 
 }

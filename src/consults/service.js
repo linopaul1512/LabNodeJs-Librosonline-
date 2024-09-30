@@ -14,6 +14,13 @@ const modifyCon = async (id, consultObj) => {
   };
 };
 
+const showCon = async () => {
+  const intertypes = await intertypeRepository.findAll();
+  return {
+    intertypes: intertypes
+  };
+};
+
 const deleteCon = async (id) => {
   const delConsult = await consultRepository.deleteConsult(id);
   return { deletedConsult: delConsult
@@ -34,5 +41,6 @@ export const consultService = {
     addCon,
     modifyCon,
     filteraCon,
-    deleteCon
+    deleteCon,
+    showCon
 }
