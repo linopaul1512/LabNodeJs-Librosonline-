@@ -2,6 +2,8 @@ import { categoryController } from '../category/controller.js';
 import bodyParser from 'body-parser';
 import express from 'express';
 import { authenticator } from '../validations/authenticator.js';
+import { validateAuthorFields } from '../validations/validateFields.js';
+import authenticateToken from '../validations/authenticateToken.js';
 
 const categoryRouter = express.Router()
 categoryRouter.use(bodyParser.json())
@@ -91,7 +93,7 @@ categoryRouter.get('/category/filter/:name', categoryController.filterCategory);
  *       400:
  *         description: Error en la creación de la categoría
  */
-categoryRouter.post('/category/add', authenticator.authorizePublisher, categoryController.addCategory);
+categoryRouter.post('/category/add', authenticateToken, authenticator.authorizePublisher, categoryController.addCategory);
 
 /**
  * @swagger

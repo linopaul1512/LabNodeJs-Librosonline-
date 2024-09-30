@@ -2,6 +2,8 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import { similarController } from '../similiarproducts/controller.js';
 import { authenticator } from '../validations/authenticator.js';
+import { validateSimilarProductsFields } from '../validations/validateFields.js';
+import authenticateToken from '../validations/authenticateToken.js';
 
 const similarRouter = express.Router()
 similarRouter.use(bodyParser.json())
@@ -41,7 +43,7 @@ similarRouter.use(bodyParser.urlencoded({
  *       404:
  *         description: Producto similar no encontrado
  */
-similarRouter.get('/similar/:id', similarController.filterSim);
+similarRouter.get('/similar/:id', authenticateToken, similarController.filterSim);
 
 /**
  * @swagger
@@ -69,7 +71,7 @@ similarRouter.get('/similar/:id', similarController.filterSim);
  *       404:
  *         description: Producto similar no encontrado
  */
-similarRouter.delete('/similar/:id', authenticator.authorizePublisher, similarController.deleteSim);
+similarRouter.delete('/similar/:id', authenticateToken, authenticator.authorizePublisher, similarController.deleteSim);
 
 /**
  * @swagger
@@ -103,7 +105,7 @@ similarRouter.delete('/similar/:id', authenticator.authorizePublisher, similarCo
  *       400:
  *         description: Error creando del producto similar
  */
-similarRouter.post('/similar/add', authenticator.authorizePublisher, similarController.addSim);
+similarRouter.post('/similar/add', authenticateToken, authenticator.authorizePublisher, validateSimilarProductsFields, similarController.addSim);
 
 /**
  * @swagger
@@ -144,6 +146,6 @@ similarRouter.post('/similar/add', authenticator.authorizePublisher, similarCont
  *       404:
  *         description: Producto similar no encontrado
  */
-similarRouter.put('/similar/:id', authenticator.authorizePublisher, similarController.modifySim);
+similarRouter.put('/similar/:id', authenticateToken, authenticator.authorizePublisher, validateSimilarProductsFields, similarController.modifySim);
 
 export default similarRouter;

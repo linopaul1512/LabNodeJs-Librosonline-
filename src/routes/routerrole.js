@@ -2,7 +2,8 @@ import bodyParser from 'body-parser';
 import express from 'express';
 import { roleController } from '../role/controller.js';
 import { authenticator } from '../validations/authenticator.js';
-
+import { validateRoleFields } from '../validations/validateFields.js';
+import authenticateToken from '../validations/authenticateToken.js';
 
 const roleRouter = express.Router()
 roleRouter.use(bodyParser.json())
@@ -38,7 +39,7 @@ roleRouter.use(bodyParser.urlencoded({
  *       400:
  *         description: Error en la creación del rol
  */
-roleRouter.post('/role/add', authenticator.authorizePublisher, roleController.addRole);
+roleRouter.post('/role/add', authenticateToken, authenticator.authorizePublisher, validateRoleFields, roleController.addRole);
 
 /**
  * @swagger
@@ -75,6 +76,6 @@ roleRouter.post('/role/add', authenticator.authorizePublisher, roleController.ad
  *       404:
  *         description: Rol no encontrado
  */
-roleRouter.put('/role/:id', authenticator.authorizePublisher, roleController.modifyRole);
+roleRouter.put('/role/:id', authenticateToken, authenticator.authorizePublisher, validateRoleFields, roleController.modifyRole);
 
 export default roleRouter;

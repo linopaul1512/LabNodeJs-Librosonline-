@@ -1,6 +1,9 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import { intersimController } from '../intersimilar/controller.js';
+import { authenticator } from '../validations/authenticator.js';
+import { validateInterSimilarFields } from '../validations/validateFields.js';
+import authenticateToken from '../validations/authenticateToken.js';
 
 const intersimRouter = express.Router()
 intersimRouter.use(bodyParser.json())
@@ -38,7 +41,7 @@ intersimRouter.use(bodyParser.urlencoded({
  *       404:
  *         description: Intersimilar no encontrada
  */
-intersimRouter.get('/intersim/:id', intersimController.filterIntersim); 
+intersimRouter.get('/intersim/:id', authenticateToken, authenticator.authorizePublisher, intersimController.filterIntersim); 
 
 /**
  * @swagger
@@ -66,7 +69,7 @@ intersimRouter.get('/intersim/:id', intersimController.filterIntersim);
  *       404:
  *         description: Intersimilar no encontrado
  */
-intersimRouter.delete('/intersim/:id', intersimController.deleteIntersim);
+intersimRouter.delete('/intersim/:id', authenticateToken, authenticator.authorizePublisher, intersimController.deleteIntersim);
 
 /**
  * @swagger
@@ -98,7 +101,7 @@ intersimRouter.delete('/intersim/:id', intersimController.deleteIntersim);
  *       400:
  *         description: Error en la creación del Intersimilar
  */
-intersimRouter.post('/intersim/add', intersimController.addIntersimt);
+intersimRouter.post('/intersim/add', authenticateToken, authenticator.authorizePublisher, validateInterSimilarFields, intersimController.addIntersimt);
 
 /**
  * @swagger
@@ -137,6 +140,6 @@ intersimRouter.post('/intersim/add', intersimController.addIntersimt);
  *       404:
  *         description: Intersimilar no encontrado
  */
-intersimRouter.put('/intersim/:id', intersimController.modifyIntersim);
+intersimRouter.put('/intersim/:id', authenticateToken, authenticator.authorizePublisher, validateInterSimilarFields, intersimController.modifyIntersim);
 
 export default intersimRouter;

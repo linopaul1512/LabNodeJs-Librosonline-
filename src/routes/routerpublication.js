@@ -1,6 +1,9 @@
 import bodyParser from 'body-parser';
 import express from 'express';
 import { publicationController } from '../publication/controller.js';
+import { authenticator } from '../validations/authenticator.js';
+import { validatePublicationFields } from '../validations/validateFields.js';
+import authenticateToken from '../validations/authenticateToken.js';
 
 const publicatinRouter = express.Router()
 publicatinRouter.use(bodyParser.json())
@@ -47,7 +50,7 @@ publicatinRouter.use(bodyParser.urlencoded({
  *       400:
  *         description: Error en la creación de la publicación
  */
-publicatinRouter.post('/publication/add', publicationController.addPub);
+publicatinRouter.post('/publication/add', authenticateToken, authenticator.authorizePublisher, validatePublicationFields, publicationController.addPub);
 
 /**
  * @swagger
@@ -95,7 +98,7 @@ publicatinRouter.post('/publication/add', publicationController.addPub);
  *       404:
  *         description: Publicación no encontrada
  */
-publicatinRouter.put('/publication/:id', publicationController.modifyPub);
+publicatinRouter.put('/publication/:id', authenticateToken, authenticator.authorizePublisher, validatePublicationFields, publicationController.modifyPub);
 
 /**
  * @swagger
@@ -136,7 +139,7 @@ publicatinRouter.put('/publication/:id', publicationController.modifyPub);
  *       404:
  *         description: Publicación no encontrada
  */
-publicatinRouter.get('/publication/:id', publicationController.filterPub);
+publicatinRouter.get('/publication/:id', authenticateToken, publicationController.filterPub);
 
 /**
  * @swagger
@@ -164,6 +167,6 @@ publicatinRouter.get('/publication/:id', publicationController.filterPub);
  *       404:
  *         description: Publicación no encontrada
  */
-publicatinRouter.delete('/publication/:id', publicationController.deletePub);
+publicatinRouter.delete('/publication/:id', authenticateToken, authenticator.authorizePublisher, publicationController.deletePub);
 
 export default publicatinRouter;

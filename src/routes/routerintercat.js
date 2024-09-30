@@ -1,6 +1,9 @@
 import bodyParser from 'body-parser';
 import express from 'express';
 import { intercatController } from '../intercategory/controller.js';
+import { authenticator } from '../validations/authenticator.js';
+import { validateInterCategoryFields } from '../validations/validateFields.js';
+import authenticateToken from '../validations/authenticateToken.js';
 
 const intercatRouter = express.Router()
 intercatRouter.use(bodyParser.json())
@@ -38,7 +41,7 @@ intercatRouter.use(bodyParser.urlencoded({
  *       400:
  *         description: Error en la creación de intercategory
  */
-intercatRouter.post('/intercat/add', intercatController.addIntercat);
+intercatRouter.post('/intercat/add', authenticateToken, authenticator.authorizePublisher, validateInterCategoryFields, intercatController.addIntercat);
 
 /**
  * @swagger
@@ -77,7 +80,7 @@ intercatRouter.post('/intercat/add', intercatController.addIntercat);
  *       404:
  *         description: Intercategory no encontrada
  */
-intercatRouter.put('/intercat/:id', intercatController.modifyIntercat);
+intercatRouter.put('/intercat/:id', authenticateToken, authenticator.authorizePublisher, validateInterCategoryFields, intercatController.modifyIntercat);
 
 /**
  * @swagger
@@ -109,7 +112,7 @@ intercatRouter.put('/intercat/:id', intercatController.modifyIntercat);
  *       404:
  *         description: Intercategory no encontrado
  */
-intercatRouter.get('/intercat/:id', intercatController.filterIntercat); 
+intercatRouter.get('/intercat/:id', authenticateToken, authenticator.authorizePublisher, intercatController.filterIntercat); 
 
 /**
  * @swagger
@@ -137,6 +140,6 @@ intercatRouter.get('/intercat/:id', intercatController.filterIntercat);
  *       404:
  *         description: Intercategory no encontrada
  */
-intercatRouter.delete('/intercat/:id', intercatController.deleteIntercat);
+intercatRouter.delete('/intercat/:id', authenticateToken, authenticator.authorizePublisher, intercatController.deleteIntercat);
 
 export default intercatRouter;

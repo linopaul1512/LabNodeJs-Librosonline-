@@ -1,6 +1,9 @@
 import bodyParser from 'body-parser';
 import express from 'express';
 import { intertypeController } from '../intertypes/controller.js';
+import { authenticator } from '../validations/authenticator.js';
+import { validateInterTypeFields } from '../validations/validateFields.js';
+import authenticateToken from '../validations/authenticateToken.js';
 
 const intertypeRouter = express.Router()
 intertypeRouter.use(bodyParser.json())
@@ -38,7 +41,7 @@ intertypeRouter.use(bodyParser.urlencoded({
  *       400:
  *         description: Error en la creación del InterType
  */
-intertypeRouter.post('/intertype/add', intertypeController.addIntertype);
+intertypeRouter.post('/intertype/add', authenticateToken, authenticator.authorizePublisher, validateInterTypeFields, intertypeController.addIntertype);
 
 /**
  * @swagger
@@ -77,7 +80,7 @@ intertypeRouter.post('/intertype/add', intertypeController.addIntertype);
  *       404:
  *         description: InterType no encontrado
  */
-intertypeRouter.put('/intertype/:id', intertypeController.modifyIntertype);
+intertypeRouter.put('/intertype/:id', authenticateToken, authenticator.authorizePublisher, validateInterTypeFields, intertypeController.modifyIntertype);
 
 /**
  * @swagger
@@ -91,7 +94,7 @@ intertypeRouter.put('/intertype/:id', intertypeController.modifyIntertype);
  *         schema:
  *           type: integer
  *         required: true
- *         description: ID del InterType que se va a recuperar
+ *         description: ID del InterType que se va a buscar
  *     responses:
  *       200:
  *         description: Detalles del InterType
@@ -109,7 +112,7 @@ intertypeRouter.put('/intertype/:id', intertypeController.modifyIntertype);
  *       404:
  *         description: InterType no encontrado
  */
-intertypeRouter.get('/intertype/:id', intertypeController.filterIntertype); 
+intertypeRouter.get('/intertype/:id', authenticateToken, authenticator.authorizePublisher, intertypeController.filterIntertype); 
 
 /**
  * @swagger
@@ -137,6 +140,6 @@ intertypeRouter.get('/intertype/:id', intertypeController.filterIntertype);
  *       404:
  *         description: InterType no encontrado
  */
-intertypeRouter.delete('/intertype/:id', intertypeController.deleteIntertype);
+intertypeRouter.delete('/intertype/:id', authenticateToken, authenticator.authorizePublisher, intertypeController.deleteIntertype);
 
 export default intertypeRouter;

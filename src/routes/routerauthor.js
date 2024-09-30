@@ -2,6 +2,8 @@ import bodyParser from 'body-parser';
 import express from 'express';
 import { authorController } from '../author/controller.js';
 import { authenticator } from '../validations/authenticator.js';
+import { validateAuthorFields } from '../validations/validateFields.js';
+import authenticateToken from '../validations/authenticateToken.js';
 
 const authorRouter = express.Router()
 authorRouter.use(bodyParser.json())
@@ -103,7 +105,7 @@ authorRouter.delete('/author/:id', authenticator.authorizePublisher, authorContr
  *       400:
  *         description: Error en la creación del autor
  */
-authorRouter.post('/author/add', authenticator.authorizePublisher, authorController.addAuth);
+authorRouter.post('/author/add', authenticateToken, authenticator.authorizePublisher, validateAuthorFields, authorController.addAuth);
 
 /**
  * @swagger
@@ -167,6 +169,6 @@ authorRouter.put('/author/:id', authenticator.authorizePublisher, authorControll
  *       404:
  *         description: Autores no encontrados
  */
-authorRouter.get('/authors', authorController.showAuthors());
+authorRouter.get('/authors', authorController.showAuthors);
 
 export default authorRouter;

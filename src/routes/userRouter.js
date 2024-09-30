@@ -1,6 +1,9 @@
 import { userController } from '../user/controller.js';
 import bodyParser from 'body-parser';
 import express from 'express';
+import { authenticator } from '../validations/authenticator.js';
+import { validateUserFields } from '../validations/validateFields.js';
+import authenticateToken from '../validations/authenticateToken.js';
 
 const userRouter = express.Router()
 userRouter.use(bodyParser.json())
@@ -37,7 +40,7 @@ userRouter.use(bodyParser.urlencoded({
  *                       Email:
  *                         type: string
  */
-userRouter.get('/users', userController.showUsers);
+userRouter.get('/users', authenticateToken, authenticator.authorizePublisher, userController.showUsers);
 
 /**
  * @swagger
@@ -71,7 +74,7 @@ userRouter.get('/users', userController.showUsers);
  *       404:
  *         description: Usuario no encontrado
  */
-userRouter.get('/user/filter/:email', userController.filterEmail); 
+userRouter.get('/user/filter/:email', authenticateToken, userController.filterEmail); 
 
 /**
  * @swagger
@@ -114,7 +117,7 @@ userRouter.get('/user/filter/:email', userController.filterEmail);
  *       400:
  *         description: Error en la creación del usuario
  */
-userRouter.post('/user/add', userController.addUser);
+userRouter.post('/user/add', authenticateToken, validateUserFields, userController.addUser);
 
 /**
  * @swagger
@@ -164,7 +167,7 @@ userRouter.post('/user/add', userController.addUser);
  *       404:
  *         description: Usuario no encontrado
  */
-userRouter.put('/user/:id', userController.modifyUser);
+userRouter.put('/user/:id', authenticateToken, validateUserFields, userController.modifyUser);
 
 /**
  * @swagger
@@ -192,6 +195,6 @@ userRouter.put('/user/:id', userController.modifyUser);
  *       404:
  *         description: Usuario no encontrado
  */
-userRouter.delete('/user/:id', userController.deleteUser);
+userRouter.delete('/user/:id', authenticateToken, userController.deleteUser);
 
 export default userRouter;
