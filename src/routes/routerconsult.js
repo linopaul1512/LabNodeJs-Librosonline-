@@ -29,11 +29,46 @@ consultRouter.use(bodyParser.urlencoded({
  *                   items:
  *                     type: object
  *       404:
- *         description: Consulttas no encontrados
+ *         description: Consultas no encontrados
  */
-authorRouter.get('/consults', authenticateToken, consultController.showCon);
+consultRouter.get('/consults', authenticateToken, consultController.showCon);
 
+
+/**
+ * @swagger
+ * /author/add:
+ *   post:
+ *     summary: Añade una nueva consulta
+ *     tags: [Consult]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               Content:
+ *                 type: string
+ *               UserID:
+ *                 type: integer
+ *               PublicationID:
+ *                 type: integer
+ *     responses:
+ *       200:
+ *         description: Consulta creada exitosamente
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 consults:
+ *                   type: object
+ *       400:
+ *         description: Error en la creación de la consulta
+ */
 consultRouter.post('/consult/add', authenticateToken, validateConsultsFields, consultController.addCon);
+
+
 consultRouter.put('/consult/:id', authenticateToken, validateConsultsFields, consultController.modifyCon);
 consultRouter.get('/consult/:id', authenticateToken, consultController.filterCon); 
 consultRouter.delete('/consult/:id', authenticateToken, consultController.deleteCon);
