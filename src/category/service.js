@@ -1,10 +1,27 @@
-import {categoryRepository} from "./repository.js";
+import { categoryRepository } from "./repository.js";
+import { intercatRepository } from '../intercategory/repository.js'
+import { sequelize } from "../db/db.config.js";
+
 
 const showCategories = async () => {
   const categories = await categoryRepository.findAll();
   return {
     category: categories
   };
+};
+
+const addCategoryWithInterCat = async (categoryObj, interObj) => {
+    return await sequelize.transaction(async (t) => {
+        const newCategory = await categoryRepository.createCategory(categoryObj, { transaction: t });
+
+        interObj.CategoryID = newCategory.id; 
+        const newInterCategory = await intercatRepository.createIntercat(interObj, { transaction: t });
+
+        return {
+            category: newCategory,
+            intercategory: newInterCategory
+        };
+    });
 };
 
 const addCategory = async (categoryObj) => {
@@ -40,5 +57,6 @@ export const categoryService = {
     modifyCategory,
     filterCategory,
     deleteCategory,
-    showCategories
+    showCategories,
+    addCategoryWithInterCat
 }
